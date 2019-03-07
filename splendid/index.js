@@ -16,7 +16,7 @@ const config = {
   output: BUILD_DIR,
   mount: '/medium/',
   // to generate sitemaps:
-  /* url: https://website.github.io/splendid */
+  url: 'https://github.com/artdecocode/medium',
 }
 
 export default config
