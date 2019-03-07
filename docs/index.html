@@ -52,11 +52,43 @@
           
           <p class="SectionBreak"><a href="#top" title="Back To Top"><img src="section-breaks/0.svg" alt="Back To Top" /></a></p>
           
+          <h2>Uploading a file as block blob</h2>
+          
+          <pre><code class="js hljs"><span class="hljs-keyword">async</span> uploadBlob() {
+  <span class="hljs-keyword">const</span> { file } = <span class="hljs-keyword">this</span>.props
+  <span class="hljs-comment">/**
+    * @type {import('azure-storage').BlobService}
+    */</span>
+  <span class="hljs-keyword">const</span> blobService = <span class="hljs-keyword">this</span>.props.blobService
+  <span class="hljs-keyword">if</span> (blobService) {
+    <span class="hljs-keyword">const</span> blockSize = file.size &gt; <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">32</span> ? <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">4</span> : <span class="hljs-number">1024</span> * <span class="hljs-number">512</span>
+    blobService.singleBlobPutThresholdInBytes = blockSize
+    <span class="hljs-keyword">const</span> speedSummary = blobService.createBlockBlobFromBrowserFile(
+      <span class="hljs-string">'web-uploads'</span>, file.name, file,
+      { blockSize },
+      (error, result) =&gt; {
+        <span class="hljs-keyword">this</span>.setState({ <span class="hljs-attr">uploaded</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">progress</span>: <span class="hljs-literal">null</span> })
+        <span class="hljs-keyword">if</span>(error) {
+          <span class="hljs-keyword">this</span>.setState({ <span class="hljs-attr">error</span>: error.message })
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Upload is successful'</span>)
+        }
+      })
+    speedSummary.on(<span class="hljs-string">'progress'</span>, () =&gt; {
+      <span class="hljs-keyword">const</span> progress = speedSummary.getCompletePercent()
+      <span class="hljs-built_in">console</span>.log(progress)
+      <span class="hljs-keyword">this</span>.updateProgress(progress)
+    })
+  }
+}</code></pre>
+          
+          <p class="SectionBreak"><a href="#top" title="Back To Top"><img src="section-breaks/1.svg" alt="Back To Top" /></a></p>
+          
           <h2>Introduction</h2>
           
           This is introduction.
           
-          <p class="SectionBreak"><a href="#top" title="Back To Top"><img src="section-breaks/1.svg" alt="Back To Top" /></a></p>
+          <p class="SectionBreak"><a href="#top" title="Back To Top"><img src="section-breaks/2.svg" alt="Back To Top" /></a></p>
         </div>
         </div>
         <footer>
