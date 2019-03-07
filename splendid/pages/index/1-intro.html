@@ -3,3 +3,17 @@
 This is introduction.
 
 <section-break />
+
+```js
+if(xhr.readyState == 3) {
+  const newData = xhr.response.substr(xhr.seenBytes)
+  xhr.seenBytes = xhr.responseText.length
+  lastData = newData
+  if (lastData) {
+    try {
+      lastData = JSON.parse(lastData)
+    } catch (err) {/**/}
+  }
+  return
+}
+```

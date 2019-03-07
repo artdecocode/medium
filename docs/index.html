@@ -89,6 +89,19 @@
           This is introduction.
           
           <p class="SectionBreak"><a href="#top" title="Back To Top"><img src="section-breaks/2.svg" alt="Back To Top" /></a></p>
+          
+          <pre><code class="js hljs"><span class="hljs-keyword">if</span>(xhr.readyState == <span class="hljs-number">3</span>) {
+  <span class="hljs-keyword">const</span> newData = xhr.response.substr(xhr.seenBytes)
+  xhr.seenBytes = xhr.responseText.length
+  lastData = newData
+  <span class="hljs-keyword">if</span> (lastData) {
+    <span class="hljs-keyword">try</span> {
+      lastData = <span class="hljs-built_in">JSON</span>.parse(lastData)
+    } <span class="hljs-keyword">catch</span> (err) {<span class="hljs-comment">/**/</span>}
+  }
+  <span class="hljs-keyword">return</span>
+}</code></pre>
+          
         </div>
         </div>
         <footer>
