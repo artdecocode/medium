@@ -19,7 +19,7 @@
     "e": "node example",
     "example/": "yarn e example/example.js",
     "splendid": "splendid",
-    "web": "splendid -s"
+    "dev": "splendid-dev -s"
   },
   "files": [
     "build"
