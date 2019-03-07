@@ -1,7 +1,10 @@
 {
-  "extends": ["artdeco", "plugin:react/recommended"],
+  "extends": [
+    "artdeco",
+    "plugin:react/recommended"
+  ],
   "rules": {
-    "react/prop-types": 0,
-    "react/react-in-jsx-scope": 0
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }
